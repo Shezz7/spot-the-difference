@@ -20,9 +20,22 @@ def score_msg(screen, score):
     pygame.display.update()
 
 
+def get_diff():
+    diff_list = []
+    bat_logo = pygame.Rect(367, 447, 50, 25)
+    ugly_nose = pygame.Rect(360, 340, 27, 27)
+    cat_whisker = pygame.Rect(50, 535, 20, 28)
+    white_candle = pygame.Rect(68, 139, 52, 47)
+    potion_label = pygame.Rect(679, 763, 64, 51)
+    spider_web = pygame.Rect(0, 0, 43, 38)
+    spider_hand = pygame.Rect(662, 122, 41, 55)
+    diff_list = [bat_logo, ugly_nose, cat_whisker, white_candle, potion_label, spider_web, spider_hand]
+    return diff_list
+
+
 def main():
     pygame.init()
-    
+
     screen = pygame.display.set_mode((WINDOW_WIDTH, WINDOW_HEIGHT))
     background = load_image('resources/spot_the_diff.png')
 
@@ -30,7 +43,8 @@ def main():
     pygame.display.update()
     score = 0
     score_msg(screen, score)
-
+    diff_list = get_diff()
+    
     while True:
         evt = pygame.event.get()
         for event in evt:
