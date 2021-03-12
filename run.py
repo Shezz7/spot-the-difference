@@ -38,6 +38,7 @@ def main():
 
     screen = pygame.display.set_mode((WINDOW_WIDTH, WINDOW_HEIGHT))
     background = load_image('resources/spot_the_diff.png')
+    bgmusic = pygame.mixer.Sound('bgmusic.wav')
 
     screen.blit(background, (0, 0))
     pygame.display.update()
@@ -47,6 +48,7 @@ def main():
     hits = []
     
     while True:
+        bgmusic.play()
         evt = pygame.event.get()
         for event in evt:
             if event.type == pygame.QUIT:
