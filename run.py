@@ -44,6 +44,7 @@ def main():
     score = 0
     score_msg(screen, score)
     diff_list = get_diff()
+    hits = []
     
     while True:
         evt = pygame.event.get()
@@ -52,9 +53,12 @@ def main():
                 sys.exit()
             if event.type == pygame.MOUSEBUTTONDOWN and pygame.mouse.get_pressed() == LEFT_CLICK:
                 pos = pygame.mouse.get_pos()
-                score = score + 1
-                screen.blit(background, (0, 0))
-                score_msg(screen, score)
+                for rect in diff_list:
+                    if rect.collidepoint(pos) and rect not in hits:
+                        score = score + 1
+                        screen.blit(background, (0, 0))
+                        score_msg(screen, score)
+                        hits.append(rect)
 
 
 if __name__ == "__main__":
