@@ -1,5 +1,4 @@
 import sys
-import random
 from time import sleep
 import pygame
 
@@ -7,8 +6,6 @@ import pygame
 WINDOW_WIDTH = 1600
 WINDOW_HEIGHT = 980
 LEFT_CLICK = (1, 0, 0)
-# toggle this to enable/disable the zombie popup
-ZOMBIE_POPUP = 0
 
 def load_image(image):
     final_image = pygame.image.load(image)
@@ -61,7 +58,6 @@ def main():
     diff_list = get_diff()
     hits = []
 
-    pygame.time.set_timer(pygame.USEREVENT, random.randint(8000, 12000))
 
     while True:
         bgmusic.play()
@@ -78,7 +74,7 @@ def main():
                         score_msg(screen, score)
                         hits.append(rect)
 
-            if event.type == pygame.USEREVENT and ZOMBIE_POPUP == 1:
+            if score == 7:
                 bgmusic.stop()
                 zombie_popup(screen)
                 pygame.quit()
