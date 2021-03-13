@@ -7,6 +7,8 @@ import pygame
 WINDOW_WIDTH = 1600
 WINDOW_HEIGHT = 980
 LEFT_CLICK = (1, 0, 0)
+# toggle this to enable/disable the zombie popup
+ZOMBIE_POPUP = 1
 
 def load_image(image):
     final_image = pygame.image.load(image)
@@ -17,8 +19,8 @@ def load_image(image):
 def score_msg(screen, score):
     myfont = pygame.font.SysFont('Arial', 36)
     myfont.set_bold(1)
-    scoretext = myfont.render("Score=" + str(score), 1, (200, 200, 200))
-    screen.blit(scoretext, (0, 900))
+    score_text = myfont.render("Score=" + str(score), 1, (200, 200, 200))
+    screen.blit(score_text, (0, 900))
     pygame.display.update()
 
 
@@ -76,7 +78,7 @@ def main():
                         score_msg(screen, score)
                         hits.append(rect)
 
-            if event.type == pygame.USEREVENT:
+            if event.type == pygame.USEREVENT and ZOMBIE_POPUP == 1:
                 bgmusic.stop()
                 zombie_popup(screen)
                 pygame.quit()
