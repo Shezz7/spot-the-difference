@@ -1,3 +1,3 @@
 # Spot The Difference
-![alt text](https://github.com/[username]/[reponame]/blob/[branch]/image.jpg?raw=true)
+![alt text](https://github.com/Shezz7/spot-the-difference/resources/spot_the_diff.png?raw=true)
 Click on the points of difference between the two images
