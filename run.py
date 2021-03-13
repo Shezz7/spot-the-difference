@@ -1,4 +1,6 @@
 import sys
+import random
+from time import sleep
 import pygame
 
 
@@ -33,12 +35,22 @@ def get_diff():
     return diff_list
 
 
+def zombie_popup(screen):
+    scream = pygame.mixer.Sound('resources/scream.wav')
+    zombie = load_image('resources/scary_face.png')
+    scream.play()
+    screen.blit(zombie, (0, 0))
+    pygame.display.update()
+    sleep(3)
+    scream.stop()
+
+
 def main():
     pygame.init()
 
     screen = pygame.display.set_mode((WINDOW_WIDTH, WINDOW_HEIGHT))
     background = load_image('resources/spot_the_diff.png')
-    bgmusic = pygame.mixer.Sound('bgmusic.wav')
+    bgmusic = pygame.mixer.Sound('resources/bgmusic.wav')
 
     screen.blit(background, (0, 0))
     pygame.display.update()
@@ -46,7 +58,9 @@ def main():
     score_msg(screen, score)
     diff_list = get_diff()
     hits = []
-    
+
+    pygame.time.set_timer(pygame.USEREVENT, random.randint(8000, 12000))
+
     while True:
         bgmusic.play()
         evt = pygame.event.get()
@@ -61,6 +75,12 @@ def main():
                         screen.blit(background, (0, 0))
                         score_msg(screen, score)
                         hits.append(rect)
+
+            if event.type == pygame.USEREVENT:
+                bgmusic.stop()
+                zombie_popup(screen)
+                pygame.quit()
+                sys.exit()
 
 
 if __name__ == "__main__":
