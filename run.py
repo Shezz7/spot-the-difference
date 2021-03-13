@@ -8,7 +8,7 @@ WINDOW_WIDTH = 1600
 WINDOW_HEIGHT = 980
 LEFT_CLICK = (1, 0, 0)
 # toggle this to enable/disable the zombie popup
-ZOMBIE_POPUP = 1
+ZOMBIE_POPUP = 0
 
 def load_image(image):
     final_image = pygame.image.load(image)
@@ -17,9 +17,9 @@ def load_image(image):
 
 
 def score_msg(screen, score):
-    myfont = pygame.font.SysFont('Arial', 36)
+    myfont = pygame.font.Font('resources/halloween.ttf', 45)
     myfont.set_bold(1)
-    score_text = myfont.render("Score=" + str(score), 1, (200, 200, 200))
+    score_text = myfont.render("Score:" + str(score), 1, (200, 200, 200))
     screen.blit(score_text, (0, 900))
     pygame.display.update()
 
@@ -43,7 +43,7 @@ def zombie_popup(screen):
     scream.play()
     screen.blit(zombie, (0, 0))
     pygame.display.update()
-    sleep(3)
+    sleep(2)
     scream.stop()
 
 
