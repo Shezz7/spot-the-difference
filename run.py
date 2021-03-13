@@ -17,7 +17,7 @@ def load_image(image):
 
 
 def score_msg(screen, score):
-    myfont = pygame.font.Font('resources/halloween.ttf', 45)
+    myfont = pygame.font.Font('resources/font/halloween.ttf', 45)
     myfont.set_bold(1)
     score_text = myfont.render("Score:" + str(score), 1, (200, 200, 200))
     screen.blit(score_text, (0, 900))
@@ -38,8 +38,8 @@ def get_diff():
 
 
 def zombie_popup(screen):
-    scream = pygame.mixer.Sound('resources/scream.wav')
-    zombie = load_image('resources/scary_face.png')
+    scream = pygame.mixer.Sound('resources/audio/scream.wav')
+    zombie = load_image('resources/images/scary_face.png')
     scream.play()
     screen.blit(zombie, (0, 0))
     pygame.display.update()
@@ -51,8 +51,8 @@ def main():
     pygame.init()
 
     screen = pygame.display.set_mode((WINDOW_WIDTH, WINDOW_HEIGHT))
-    background = load_image('resources/spot_the_diff.png')
-    bgmusic = pygame.mixer.Sound('resources/bgmusic.wav')
+    background = load_image('resources/images/spot_the_diff.png')
+    bgmusic = pygame.mixer.Sound('resources/audio/bgmusic.wav')
 
     screen.blit(background, (0, 0))
     pygame.display.update()
