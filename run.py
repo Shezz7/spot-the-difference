@@ -7,13 +7,20 @@ WINDOW_WIDTH = 1600
 WINDOW_HEIGHT = 980
 LEFT_CLICK = (1, 0, 0)
 
+
 def load_image(image):
+    """
+    Load and scale an image to the specified width and height
+    """
     final_image = pygame.image.load(image)
     final_image = pygame.transform.scale(final_image, (WINDOW_WIDTH, WINDOW_HEIGHT))
     return final_image
 
 
 def score_msg(screen, score):
+    """
+    Display the score on the screen
+    """
     myfont = pygame.font.Font('resources/font/halloween.ttf', 45)
     myfont.set_bold(1)
     score_text = myfont.render("Score:" + str(score), 1, (200, 200, 200))
@@ -22,6 +29,9 @@ def score_msg(screen, score):
 
 
 def get_diff():
+    """
+    Define the points where clicking will increment the score
+    """
     diff_list = []
     bat_logo = pygame.Rect(367, 447, 50, 25)
     ugly_nose = pygame.Rect(360, 340, 27, 27)
@@ -35,6 +45,9 @@ def get_diff():
 
 
 def zombie_popup(screen):
+    """
+    Jump scare when the game ends
+    """
     scream = pygame.mixer.Sound('resources/audio/scream.wav')
     zombie = load_image('resources/images/scary_face.png')
     scream.play()
@@ -45,6 +58,9 @@ def zombie_popup(screen):
 
 
 def main():
+    """
+    Describe the main thread of execution in an infinite loop
+    """
     pygame.init()
 
     screen = pygame.display.set_mode((WINDOW_WIDTH, WINDOW_HEIGHT))
@@ -53,11 +69,13 @@ def main():
 
     screen.blit(background, (0, 0))
     pygame.display.update()
+
     score = 0
     score_msg(screen, score)
+    # Acquire list of hit points
     diff_list = get_diff()
+    # List to store which points have been hit to avoid duplicate scores
     hits = []
-
 
     while True:
         bgmusic.play()
@@ -73,7 +91,7 @@ def main():
                         screen.blit(background, (0, 0))
                         score_msg(screen, score)
                         hits.append(rect)
-
+            # Jump scare when game is over
             if score == 7:
                 bgmusic.stop()
                 zombie_popup(screen)
